@@ -1,1 +1,66 @@
-/* You can add global styles to this file, and also import other style files */
+/**
+ *      Don't overwrite ##### main design rules #####
+ *
+ * main color: #252525 - gray
+ * secondary color: #e58e27 - yellow
+ *
+ *
+ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+$colors: (
+  main: #252525,
+  secondary: #e58e27,
+);
+
+@each $key, $value in $colors {
+  .text-#{$key} {
+    color: $value;
+  }
+  .bg-#{$key} {
+    background-color: $value;
+  }
+  .btn-#{$key} {
+    background-color: $value;
+  }
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap");
+
+body {
+  font-family: "Encode Sans Expanded", sans-serif;
+}
+/** this our carousel styles, sorry for doing that but it must to be globally to overrided */
+body
+  > app-root
+  > app-home
+  > app-header
+  > div
+  > owl-carousel-o
+  > div
+  > div.owl-nav.ng-star-inserted
+  > div.owl-prev,
+body
+  > app-root
+  > app-home
+  > app-header
+  > div
+  > owl-carousel-o
+  > div
+  > div.owl-nav.ng-star-inserted
+  > div.owl-next {
+  display: none;
+}
+body
+  > app-root
+  > app-home
+  > app-header
+  > div.relative
+  > owl-carousel-o
+  > div
+  > div.owl-dots.ng-star-inserted
+  .active
+  span {
+  background-color: #e58e27;
+}

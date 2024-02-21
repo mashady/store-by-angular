@@ -1,0 +1,160 @@
+<div
+  class="flex justify-center items-center bg-secondary p-[5px] font-bold capitalize text-[15px]"
+>
+  🔥Get your Oversized Tees now before stock runs out!
+</div>
+<nav class="relative">
+  <div class="flex justify-between p-6 items-center border-b-2 bg-white">
+    <div class="flex items-center">
+      <div class="md:hidden w-8 h-8 flex justify-center items-center mt-2">
+        <i
+          *ngIf="!sidebarOpened"
+          (click)="toggleSidebar()"
+          class="fa fa-bars-staggered cursor-pointer mr-2 text-xl"
+        ></i>
+        <i
+          *ngIf="sidebarOpened"
+          (click)="toggleSidebar()"
+          class="fa fa-close cursor-pointer mr-2 text-xl"
+        ></i>
+      </div>
+      <span class="text-3xl font-bold cursor-pointer"
+        ><a routerLink="/home"> store </a></span
+      >
+    </div>
+    <div>
+      <ul class="hidden md:flex text-xl capitalize">
+        <li class="mr-4 cursor-pointer"><a routerLink="/home"> home </a></li>
+        <li class="mr-4 cursor-pointer">
+          <a routerLink="/products">products</a>
+        </li>
+        <li class="mr-4 cursor-pointer">
+          <a routerLink="/categories">categories</a>
+        </li>
+        <li class="mr-4 cursor-pointer"><a routerLink="/brands">brands</a></li>
+        <li class="mr-4 cursor-pointer">
+          <a routerLink="/wishlist">wishlist</a>
+        </li>
+      </ul>
+    </div>
+    <div class="flex justify-center items-center">
+      <i
+        (click)="toggleSearchClick()"
+        class="fa fa-search text-[22px] mr-4 cursor-pointer"
+      ></i>
+      <a routerLink="/login"
+        ><i class="fa fa-user text-2xl mr-4 cursor-pointer"></i
+      ></a>
+      <div class="relative">
+        <i
+          (click)="toggleCart()"
+          class="fa fa-bag-shopping text-2xl mr-4 cursor-pointer"
+        ></i>
+        <span
+          class="font-bold text-[13px] bg-secondary rounded-full w-[20px] h-[20px] flex justify-center items-center absolute bottom-[-8px] right-[2px]"
+          >18</span
+        >
+      </div>
+    </div>
+  </div>
+  <div
+    *ngIf="sidebarOpened"
+    class="side-nav bg-white h-full block md:hidden w-[300px] border-r-2 fixed z-10 top0 left-0 overflow-x-hidden delay-150"
+  >
+    <ul class="delay-150 mt-8">
+      <li class="px-[2rem] py-[1rem] text-xl capitalize">
+        <div class="flex justify-between cursor-pointer">
+          <a routerLink="/home">home</a>
+          <span><i class="fa fa-arrow-right-long"></i></span>
+        </div>
+      </li>
+      <li class="px-[2rem] py-[1rem] text-xl capitalize">
+        <div class="flex justify-between cursor-pointer">
+          <a routerLink="/products">products</a>
+          <span><i class="fa fa-arrow-right-long"></i></span>
+        </div>
+      </li>
+      <li class="px-[2rem] py-[1rem] text-xl capitalize">
+        <div class="flex justify-between cursor-pointer">
+          <a routerLink="/categories">categories</a>
+          <span><i class="fa fa-arrow-right-long"></i></span>
+        </div>
+      </li>
+      <li class="px-[2rem] py-[1rem] text-xl capitalize">
+        <div class="flex justify-between cursor-pointer">
+          <a routerLink="/brands">brands</a>
+          <span><i class="fa fa-arrow-right-long"></i></span>
+        </div>
+      </li>
+      <li class="px-[2rem] py-[1rem] text-xl capitalize">
+        <div class="flex justify-between cursor-pointer">
+          <a routerLink="/wishlist">wishlist</a>
+          <span><i class="fa fa-arrow-right-long"></i></span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div
+    class="bg-white absolute left-0 h-full w-full flex justify-center items-center border-b-2"
+    [ngClass]="searchbarIsOpen == true ? 'top-0' : 'top-[-500px]'"
+  >
+    <div class="search-bar flex justify-center items-center">
+      <input
+        autofocus
+        type="text"
+        placeholder="Search"
+        class="border-[1px] border-[#252525] text-xl px-4 w-[350px] h-12 rounded-3xl text-main placeholder:text-[#252525]"
+      />
+      <i
+        (click)="toggleSearchClick()"
+        class="fa fa-close text-3xl ml-2 cursor-pointer"
+      ></i>
+    </div>
+  </div>
+</nav>
+<div
+  *ngIf="cartIsOpen"
+  class="side-nav p-6 bg-white h-full block w-[400px] border-l-2 fixed overflow-auto z-10 top0 right-0 delay-150"
+>
+  <div class="flex flex-col justify-between h-[75vh]">
+    <div>
+      <div class="flex justify-between border-b-[1px] pb-4 mb-4">
+        <h3 class="text-2xl font-bold">Your cart</h3>
+        <i
+          (click)="toggleCart()"
+          class="fa fa-close text-3xl cursor-pointer"
+        ></i>
+      </div>
+      <div class="flex justify-between items-center">
+        <img
+          src="assets/slider/clothes.jpg"
+          class="w-[100px] h-[150px] object-contain"
+        />
+        <div class="p-4">
+          <h4 class="font-bold">product title will be written here</h4>
+          <span>LE 20 </span>
+          <div
+            class="flex justify-between items-center p-4 rounded-3xl bg-main text-white mt-4"
+          >
+            <i class="fa-solid fa-minus text-xl cursor-pointer"></i>
+            <span class="text-xl">20</span>
+            <i class="fa fa-plus text-xl cursor-pointer"></i>
+          </div>
+        </div>
+        <span class="">LE 340.00</span>
+      </div>
+    </div>
+
+    <div class="">
+      <div class="flex justify-between items-center p-2 mb-2 border-t-[1px]">
+        <span class="text-xl font-bold">Total price :</span>
+        <span class="font-bold underline">LE 340.00 EGP</span>
+      </div>
+      <button
+        class="bg-main text-white w-full border-2 rounded-3xl px-4 py-2 text-lg capitalize"
+      >
+        <a routerLink="/products">Check out</a>
+      </button>
+    </div>
+  </div>
+</div>

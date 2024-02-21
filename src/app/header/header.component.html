@@ -1,0 +1,45 @@
+<div class="relative">
+  <owl-carousel-o [options]="customOptions">
+    <ng-template carouselSlide>
+      <img
+        src="assets/slider/clothes.jpg"
+        class="h-[100vh] object-cover"
+        width="100%"
+      />
+    </ng-template>
+    <ng-template carouselSlide>
+      <img
+        src="assets/slider/payment.jpg"
+        class="h-[100vh] object-cover"
+        width="100%"
+      />
+    </ng-template>
+    <ng-template carouselSlide>
+      <img
+        src="assets/slider/shoes.jpg"
+        class="h-[100vh] object-cover"
+        width="100%"
+      />
+    </ng-template>
+    <ng-template carouselSlide>
+      <img
+        src="assets/slider/sales22.jpg"
+        class="h-[100vh] object-cover"
+        width="100%"
+      />
+    </ng-template>
+  </owl-carousel-o>
+</div>
+<div
+  class="bg-main text-white flex flex-col justify-center items-center py-12 h-[300px]"
+>
+  <h2 class="text-xl md:text-3xl font-bold capitalize mb-4">
+    get a colections of products from every type
+  </h2>
+  <p class="capitalize mb-6">enjoy the journey</p>
+  <div>
+    <button class="border-2 rounded-3xl px-4 py-2 text-lg capitalize">
+      <a routerLink="/products">explore products now</a>
+    </button>
+  </div>
+</div>
