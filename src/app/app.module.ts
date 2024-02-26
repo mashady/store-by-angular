@@ -23,6 +23,12 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NewsletterComponent } from './components/newsletter/newsletter.component';
 import { ForgetpasswordComponent } from './components/forgetpassword/forgetpassword.component';
+import { PorductlistComponent } from './components/porductlist/porductlist.component';
+import { CategoryListComponent } from './components/category-list/category-list.component';
+import { HttpClientModule } from '@angular/common/http';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,9 +49,20 @@ import { ForgetpasswordComponent } from './components/forgetpassword/forgetpassw
     HeaderComponent,
     NewsletterComponent,
     ForgetpasswordComponent,
+    PorductlistComponent,
+    CategoryListComponent,
+    PaginationComponent,
   ],
 
-  imports: [BrowserModule, AppRoutingModule, RouterModule, CarouselModule, BrowserAnimationsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    RouterModule,
+    CarouselModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

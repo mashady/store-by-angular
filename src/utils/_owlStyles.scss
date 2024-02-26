@@ -1,0 +1,33 @@
+/** this our carousel styles, sorry for doing that but it must to be globally to overrided */
+body
+  > app-root
+  > app-home
+  > app-header
+  > div
+  > owl-carousel-o
+  > div
+  > div.owl-nav.ng-star-inserted
+  > div.owl-prev,
+body
+  > app-root
+  > app-home
+  > app-header
+  > div
+  > owl-carousel-o
+  > div
+  > div.owl-nav.ng-star-inserted
+  > div.owl-next {
+  display: none;
+}
+body
+  > app-root
+  > app-home
+  > app-header
+  > div.relative
+  > owl-carousel-o
+  > div
+  > div.owl-dots.ng-star-inserted
+  .active
+  span {
+  background-color: #e58e27;
+}

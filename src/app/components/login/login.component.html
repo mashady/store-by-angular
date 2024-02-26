@@ -1,24 +1,71 @@
 <div class="flex flex-col justify-center items-center my-[4rem] min-h-[60vh]">
   <h1 class="text-4xl font-bold mb-10">Login</h1>
-  <div class="flex flex-col">
-    <input
-      autofocus
-      type="email"
-      placeholder="Email"
-      class="border-[1px] border-[#252525] text-xl px-4 w-[450px] h-12 rounded-3xl text-main placeholder:text-[#252525] mb-6"
-    />
-    <input
-      autofocus
-      type="password"
-      placeholder="Password"
-      class="border-[1px] border-[#252525] text-xl px-4 w-[450px] h-12 rounded-3xl text-main placeholder:text-[#252525]"
-    />
-  </div>
+
+  <form [formGroup]="loginForm">
+    <div class="flex flex-col">
+      <div
+        *ngIf="apiError"
+        class="bg-[#f8d7da] border-[1px] text-lg border-[#f5c6cb] hover:border-[#721c24] text-[#721c24] w-full h-12 rounded-3xl px-4 flex justify-center items-center mb-6 transition-all"
+      >
+        Error from server
+      </div>
+
+      <input
+        formControlName="email"
+        autofocus
+        type="email"
+        placeholder="Email"
+        class="border-[1px] border-[#252525] text-xl px-4 w-[450px] h-12 rounded-3xl text-main placeholder:text-[#252525] mt-6"
+      />
+      <div
+        *ngIf="
+          loginForm.get('email')?.touched && loginForm.get('email')?.errors
+        "
+        class="bg-[#f8d7da] border-[1px] text-lg border-[#f5c6cb] hover:border-[#721c24] text-[#721c24] w-full h-12 rounded-3xl px-4 flex justify-center items-center mt-2 transition-all"
+      >
+        <p *ngIf="loginForm.get('email')?.errors?.['required']" class="">
+          email is required
+        </p>
+        <p *ngIf="loginForm.get('email')?.errors?.['minlength']" class="">
+          min length is 5 characters
+        </p>
+        <p *ngIf="loginForm.get('email')?.errors?.['maxlength']" class="">
+          max length is 50 characters
+        </p>
+      </div>
+      <input
+        formControlName="password"
+        autofocus
+        type="password"
+        placeholder="Password"
+        class="border-[1px] border-[#252525] text-xl px-4 w-[450px] h-12 rounded-3xl text-main placeholder:text-[#252525] mt-6"
+      />
+      <div
+        *ngIf="
+          loginForm.get('password')?.touched &&
+          loginForm.get('password')?.errors
+        "
+        class="bg-[#f8d7da] border-[1px] text-lg border-[#f5c6cb] hover:border-[#721c24] text-[#721c24] w-full h-12 rounded-3xl px-4 flex justify-center items-center mt-2 transition-all"
+      >
+        <p *ngIf="loginForm.get('password')?.errors?.['required']" class="">
+          password is required
+        </p>
+        <p *ngIf="loginForm.get('password')?.errors?.['minlength']" class="">
+          min length is 5 characters
+        </p>
+        <p *ngIf="loginForm.get('password')?.errors?.['maxlength']" class="">
+          max length is 50 characters
+        </p>
+      </div>
+    </div>
+  </form>
   <div class="w-[450px] mt-2">
     <span class="underline cursor-pointer ml-2">forget your password</span>
   </div>
   <button
     class="border-2 bg-main text-white rounded-3xl px-6 py-2 text-lg capitalize mt-6 w-[450px] min-h-12"
+    [disabled]="loginForm.invalid"
+    (click)="loginSubmit(loginForm)"
   >
     Login
   </button>

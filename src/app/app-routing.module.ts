@@ -9,6 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ForgetpasswordComponent } from './components/forgetpassword/forgetpassword.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
+import { ProductdetailsComponent } from './components/productdetails/productdetails.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'brands', component: BrandsComponent, title: 'brands' },
   { path: 'categories', component: CategoryComponent, title: 'categories' },
   { path: 'wishlist', component: WishlistComponent, title: 'wishlist' },
+  { path: 'product/:id', component: ProductdetailsComponent, title: 'product' },
   { path: 'login', component: LoginComponent, title: 'login' },
   { path: 'register', component: RegisterComponent, title: 'register' },
   {

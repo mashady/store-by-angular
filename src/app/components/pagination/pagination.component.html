@@ -1,0 +1,45 @@
+<div
+  *ngIf="totalItems !== itemsPerPage"
+  class="flex justify-center items-center"
+>
+  <ul class="inline-flex">
+    <li>
+      <button
+        [disabled]="currentPage === 1 ? true : false"
+        (click)="pageClick(currentPage - 1)"
+        class="h-10 px-5 text-main transition-colors duration-150 bg-white rounded-l-lg focus:shadow-outline hover:bg-indigo-100"
+      >
+        prev
+      </button>
+    </li>
+
+    <li
+      *ngFor="let page of pages"
+      (click)="pageClick(page)"
+      [class.bg-main]="page == currentPage"
+      [class.disabled]="currentPage === totalPages"
+      [class.text-[#FFF]]="page == currentPage"
+    >
+      <button
+        [classList]="
+          page === currentPage
+            ? 'h-10 px-5 text-white transition-colors duration-150 bg-main focus:shadow-outline'
+            : 'h-10 px-5 text-main transition-colors duration-150 bg-white focus:shadow-outline hover:bg-indigo-100'
+        "
+        class="h-10 px-5 text-white transition-colors duration-150 bg-indigo-600 focus:shadow-outline"
+      >
+        {{ page }}
+      </button>
+    </li>
+
+    <li>
+      <button
+        [disabled]="currentPage === totalPages ? true : false"
+        (click)="pageClick(currentPage + 1)"
+        class="h-10 px-5 text-main transition-colors duration-150 bg-white rounded-r-lg focus:shadow-outline hover:bg-indigo-100"
+      >
+        next
+      </button>
+    </li>
+  </ul>
+</div>

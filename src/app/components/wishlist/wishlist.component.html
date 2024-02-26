@@ -1,1 +1,45 @@
-<p>wishlist works!</p>
+<div class="container p-8 my-12">
+  <div
+    *ngIf="wishes.length == 0"
+    class="flex flex-col justify-center items-center"
+  >
+    <i class="fa-solid fa-face-frown text-main text-[100px] mb-2"></i>
+    <h1 class="text-2xl mb-6">
+      Your wishlist is empty, add items to get started
+    </h1>
+    <button
+      class="h-12 w-36 rounded bg-main mt-4 text-white"
+      routerLink="/products"
+    >
+      Explore Now
+    </button>
+  </div>
+
+  <div *ngFor="let product of wishes" class="w-full mb-8">
+    <div class="flex justify-between items-center">
+      <div class="flex flex-row">
+        <img [src]="product.imageCover" width="100px" class="rounded-xl mr-4" />
+        <div class="flex flex-col justify-center item-center">
+          <h3 class="text-xl text-main font-bold cursor-pointer">
+            {{ product.title }}
+          </h3>
+          <span class="mb-4">{{ product.price }} EGP</span>
+          <div
+            class="flex items-center cursor-pointer"
+            (click)="removeOneFromWish(product._id)"
+          >
+            <i class="fa fa-trash text-red-700 mr-2"></i>
+            <span class="text-red-700">remove</span>
+          </div>
+        </div>
+      </div>
+
+      <button
+        class="h-12 w-36 rounded bg-main mt-4 text-white"
+        (click)="addProductToCart(product._id)"
+      >
+        Add to cart
+      </button>
+    </div>
+  </div>
+</div>

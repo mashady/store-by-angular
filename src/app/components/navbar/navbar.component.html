@@ -42,9 +42,10 @@
         (click)="toggleSearchClick()"
         class="fa fa-search text-[22px] mr-4 cursor-pointer"
       ></i>
-      <a routerLink="/login"
-        ><i class="fa fa-user text-2xl mr-4 cursor-pointer"></i
-      ></a>
+      <i
+        class="fa fa-user text-2xl mr-4 cursor-pointer"
+        (click)="toggleMenu()"
+      ></i>
       <div class="relative">
         <i
           (click)="toggleCart()"
@@ -52,7 +53,7 @@
         ></i>
         <span
           class="font-bold text-[13px] bg-secondary rounded-full w-[20px] h-[20px] flex justify-center items-center absolute bottom-[-8px] right-[2px]"
-          >18</span
+          >{{ numberOfCartItems }}</span
         >
       </div>
     </div>
@@ -111,12 +112,32 @@
       ></i>
     </div>
   </div>
+  <div
+    class="w-[190px] absolute bottom-[-100px] right-[72px] z-20 rounded transition-all bg-red-400"
+    [class.bottom-[-60px]]="isLoggin"
+    *ngIf="authMenuIsOpen"
+  >
+    <ul
+      class="bg-white text-main text-[18px] p-4 border-[1px] rounded"
+      (mouseleave)="clickOutSide()"
+    >
+      <li *ngIf="!isLoggin" class="cursor-pointer border-b-[1px] p-2">
+        <a class="" routerLink="/login">Login</a>
+      </li>
+      <li *ngIf="!isLoggin" class="cursor-pointer p-2">
+        <a class="" routerLink="/register">Register</a>
+      </li>
+      <li (click)="logOut()" *ngIf="isLoggin" class="cursor-pointer p-2">
+        logout
+      </li>
+    </ul>
+  </div>
 </nav>
 <div
   *ngIf="cartIsOpen"
-  class="side-nav p-6 bg-white h-full block w-[400px] border-l-2 fixed overflow-auto z-10 top0 right-0 delay-150"
+  class="side-nav transition-all p-6 bg-white h-[calc(100%-117px)] block w-[400px] border-l-2 fixed overflow-auto z-10 top0 right-0 delay-150"
 >
-  <div class="flex flex-col justify-between h-[75vh]">
+  <div class="flex flex-col justify-betwee h-[70vh]">
     <div>
       <div class="flex justify-between border-b-[1px] pb-4 mb-4">
         <h3 class="text-2xl font-bold">Your cart</h3>
@@ -125,27 +146,65 @@
           class="fa fa-close text-3xl cursor-pointer"
         ></i>
       </div>
-      <div class="flex justify-between items-center">
+      <!--
+        cart items
+      -->
+      <div
+        *ngIf="numberOfCartItems == 0"
+        class="flex flex-col justify-center items-center"
+      >
+        <i class="fa-solid fa-face-frown text-main text-[100px] mb-2"></i>
+        <h1 class="text-2xl mb-6 text-center">
+          Your cart is empty, add items to get started
+        </h1>
+        <button
+          class="h-12 w-36 rounded bg-main mt-4 text-white"
+          routerLink="/products"
+        >
+          Explore Now
+        </button>
+      </div>
+      <div
+        *ngFor="let product of cartProducts"
+        class="flex justify-between items-center"
+      >
         <img
-          src="assets/slider/clothes.jpg"
+          [src]="product.product.imageCover"
           class="w-[100px] h-[150px] object-contain"
         />
         <div class="p-4">
-          <h4 class="font-bold">product title will be written here</h4>
-          <span>LE 20 </span>
-          <div
-            class="flex justify-between items-center p-4 rounded-3xl bg-main text-white mt-4"
-          >
-            <i class="fa-solid fa-minus text-xl cursor-pointer"></i>
-            <span class="text-xl">20</span>
-            <i class="fa fa-plus text-xl cursor-pointer"></i>
+          <h4 class="font-bold">{{ product.product.title }}</h4>
+          <span>{{ product.price }} LE</span>
+
+          <div class="flex justify-center items-center">
+            <div
+              class="flex justify-center items-center w-[4rem] h-[2rem] py-[1rem] px-[3rem] rounded-3xl bg-main text-white mr-2"
+            >
+              <i
+                class="fa-solid fa-minus text-xl cursor-pointer"
+                (click)="
+                  updateCartCount(product.product._id, product.count - 1)
+                "
+              ></i>
+              <span class="text-xl mx-2">{{ product.count }}</span>
+              <i
+                class="fa fa-plus text-xl cursor-pointer"
+                (click)="
+                  updateCartCount(product.product._id, product.count + 1)
+                "
+              ></i>
+            </div>
+            <i
+              class="fa fa-trash text-xl cursor-pointer text-red-700"
+              (click)="removeProductFromCart(product.product._id)"
+            ></i>
           </div>
         </div>
-        <span class="">LE 340.00</span>
+        <span class="">{{ product.count * product.price }} LE</span>
       </div>
     </div>
 
-    <div class="">
+    <div class="pb-6">
       <div class="flex justify-between items-center p-2 mb-2 border-t-[1px]">
         <span class="text-xl font-bold">Total price :</span>
         <span class="font-bold underline">LE 340.00 EGP</span>

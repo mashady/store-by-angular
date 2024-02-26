@@ -1,1 +1,75 @@
-<p>productdetails works!</p>
+<div class="container">
+  <div
+    class="grid grid-cols-1 text-center md:grid-cols-2 lg:text-left lg:grid-cols-3 gap-4 px-6 py-12 my-12"
+  >
+    <div class="col-span-1 lg:col-span-2 flex justify-center">
+      <img
+        src="https://www.maddstore.com/cdn/shop/files/kawkab2.jpg?v=1699279034&width=1100"
+        class="max-h-[90vh] object-cover rounded"
+      />
+    </div>
+    <div class="p-4">
+      <h2 class="text-[35px] md:text-[40px] font-bold">
+        Lorem ipsum dolor sit amet
+      </h2>
+      <p class="mb-4">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi,
+        excepturi, neque nam rem eligendi corrupti eius expedita, odio quaerat
+        aliquid animi reprehenderit ad? Illum enim rerum eum in, sunt facilis.
+      </p>
+      <div class="mb-6 mt-10">
+        <span class="text-[19px] font-bold"> LE 750.00 EGP </span>
+        <p class="text-[0.9rem]">
+          Tax included. Shipping calculated at checkout.
+        </p>
+      </div>
+      <span class="">Quantity : </span>
+      <div
+        class="flex justify-between items-center w-28 h-12 p-4 rounded-3xl border-2 border-[#252525] text-white mt-2 mb-6"
+      >
+        <i class="fa-solid fa-minus text-xl cursor-pointer text-main"></i>
+        <span class="text-xl text-main">20</span>
+        <i class="fa fa-plus text-xl cursor-pointer text-main"></i>
+      </div>
+      <div class="flex justify-between items-center">
+        <button
+          class="bg-main text-white w-full rounded-3xl px-4 py-2 text-lg capitalize"
+        >
+          <a routerLink="/products">add to cart</a>
+        </button>
+        <i
+          class="fa-regular fa-heart cursor-pointer text-main ml-4 text-[1.8rem]"
+        ></i>
+      </div>
+    </div>
+  </div>
+  <div class="p-6">
+    <div class="flex justify-between">
+      <div>
+        <h2 class="text-2xl font-bold mb-2">Related Items :</h2>
+      </div>
+      <span class="text-secondary font-bold capitalize underline">
+        <a routerLink="/products">see more</a>
+      </span>
+    </div>
+    <div class="mt-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div
+          *ngFor="let product of ProductList"
+          [routerLink]="['/product', product.price]"
+        >
+          <div class="flex flex-col items-center">
+            <img
+              [src]="product.productImage"
+              class="w-full rounded cursor-pointer"
+            />
+            <h2 class="font-bold hover:underline cursor-pointer truncate">
+              {{ product.name }}
+            </h2>
+            <p class="text-[0.9rem]">LE {{ product.price }} EGP</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -6,6 +6,8 @@
  *
  *
  */
+@import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap");
+@import url("../src/utils/_owlStyles.scss");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -26,41 +28,9 @@ $colors: (
   }
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap");
-
 body {
   font-family: "Encode Sans Expanded", sans-serif;
-}
-/** this our carousel styles, sorry for doing that but it must to be globally to overrided */
-body
-  > app-root
-  > app-home
-  > app-header
-  > div
-  > owl-carousel-o
-  > div
-  > div.owl-nav.ng-star-inserted
-  > div.owl-prev,
-body
-  > app-root
-  > app-home
-  > app-header
-  > div
-  > owl-carousel-o
-  > div
-  > div.owl-nav.ng-star-inserted
-  > div.owl-next {
-  display: none;
-}
-body
-  > app-root
-  > app-home
-  > app-header
-  > div.relative
-  > owl-carousel-o
-  > div
-  > div.owl-dots.ng-star-inserted
-  .active
-  span {
-  background-color: #e58e27;
+  /**
+   * overflow: hidden;
+   */
 }

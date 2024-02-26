@@ -1,35 +1,153 @@
 <div class="flex flex-col justify-center items-center my-[4rem] min-h-[60vh]">
   <h1 class="text-4xl font-bold mb-10">Register</h1>
-  <div class="flex flex-col">
-    <input
-      autofocus
-      type="text"
-      placeholder="First Name"
-      class="border-[1px] border-[#252525] text-xl px-4 w-[450px] h-12 rounded-3xl text-main placeholder:text-[#252525] mb-6"
-    />
-    <input
-      autofocus
-      type="text"
-      placeholder="Last Name"
-      class="border-[1px] border-[#252525] text-xl px-4 w-[450px] h-12 rounded-3xl text-main placeholder:text-[#252525] mb-6"
-    />
-    <input
-      autofocus
-      type="email"
-      placeholder="Email"
-      class="border-[1px] border-[#252525] text-xl px-4 w-[450px] h-12 rounded-3xl text-main placeholder:text-[#252525] mb-6"
-    />
-    <input
-      autofocus
-      type="password"
-      placeholder="Password"
-      class="border-[1px] border-[#252525] text-xl px-4 w-[450px] h-12 rounded-3xl text-main placeholder:text-[#252525]"
-    />
-  </div>
+  <form [formGroup]="registerForm">
+    <div class="flex flex-col">
+      <div
+        *ngIf="apiError"
+        class="bg-[#f8d7da] border-[1px] text-lg border-[#f5c6cb] hover:border-[#721c24] text-[#721c24] w-full h-12 rounded-3xl px-4 flex justify-center items-center mb-6 transition-all"
+      >
+        Error from server
+      </div>
+      <input
+        autofocus
+        type="text"
+        formControlName="name"
+        placeholder="name"
+        class="border-[1px] border-[#252525] text-xl px-4 w-[450px] h-12 rounded-3xl text-main placeholder:text-[#252525]"
+      />
+      <div
+        *ngIf="
+          registerForm.get('name')?.touched && registerForm.get('name')?.errors
+        "
+        class="bg-[#f8d7da] border-[1px] text-lg border-[#f5c6cb] hover:border-[#721c24] text-[#721c24] w-full h-12 rounded-3xl px-4 flex justify-center items-center transition-all mt-2"
+      >
+        <p *ngIf="registerForm.get('name')?.errors?.['required']" class="">
+          name is required
+        </p>
+        <p *ngIf="registerForm.get('name')?.errors?.['minlength']" class="">
+          min length is 5 characters
+        </p>
+        <p *ngIf="registerForm.get('name')?.errors?.['maxlength']" class="">
+          max length is 50 characters
+        </p>
+      </div>
+
+      <input
+        formControlName="email"
+        autofocus
+        type="email"
+        placeholder="Email"
+        class="border-[1px] border-[#252525] text-xl px-4 w-[450px] h-12 rounded-3xl text-main placeholder:text-[#252525] mt-6"
+      />
+      <div
+        *ngIf="
+          registerForm.get('email')?.touched &&
+          registerForm.get('email')?.errors
+        "
+        class="bg-[#f8d7da] border-[1px] text-lg border-[#f5c6cb] hover:border-[#721c24] text-[#721c24] w-full h-12 rounded-3xl px-4 flex justify-center items-center mt-2 transition-all"
+      >
+        <p *ngIf="registerForm.get('email')?.errors?.['required']" class="">
+          email is required
+        </p>
+        <p *ngIf="registerForm.get('email')?.errors?.['minlength']" class="">
+          min length is 5 characters
+        </p>
+        <p *ngIf="registerForm.get('email')?.errors?.['maxlength']" class="">
+          max length is 50 characters
+        </p>
+      </div>
+      <input
+        formControlName="password"
+        autofocus
+        type="password"
+        placeholder="Password"
+        class="border-[1px] border-[#252525] text-xl px-4 w-[450px] h-12 rounded-3xl text-main placeholder:text-[#252525] mt-6"
+      />
+      <div
+        *ngIf="
+          registerForm.get('password')?.touched &&
+          registerForm.get('password')?.errors
+        "
+        class="bg-[#f8d7da] border-[1px] text-lg border-[#f5c6cb] hover:border-[#721c24] text-[#721c24] w-full h-12 rounded-3xl px-4 flex justify-center items-center mt-2 transition-all"
+      >
+        <p *ngIf="registerForm.get('password')?.errors?.['required']" class="">
+          password is required
+        </p>
+        <p *ngIf="registerForm.get('password')?.errors?.['minlength']" class="">
+          min length is 5 characters
+        </p>
+        <p *ngIf="registerForm.get('password')?.errors?.['maxlength']" class="">
+          max length is 50 characters
+        </p>
+      </div>
+      <input
+        formControlName="rePassword"
+        autofocus
+        type="password"
+        placeholder="re password"
+        class="border-[1px] border-[#252525] text-xl px-4 w-[450px] h-12 rounded-3xl text-main placeholder:text-[#252525] mt-6"
+      />
+      <div
+        *ngIf="
+          registerForm.get('rePassword')?.touched &&
+          registerForm.get('rePassword')?.errors
+        "
+        class="bg-[#f8d7da] border-[1px] text-lg border-[#f5c6cb] hover:border-[#721c24] text-[#721c24] w-full h-12 rounded-3xl px-4 flex justify-center items-center mt-2 transition-all"
+      >
+        <p
+          *ngIf="registerForm.get('rePassword')?.errors?.['required']"
+          class=""
+        >
+          rePassword is required
+        </p>
+        <p
+          *ngIf="registerForm.get('rePassword')?.errors?.['minlength']"
+          class=""
+        >
+          min length is 5 characters
+        </p>
+        <p
+          *ngIf="registerForm.get('rePassword')?.errors?.['maxlength']"
+          class=""
+        >
+          max length is 50 characters
+        </p>
+      </div>
+      <input
+        formControlName="phone"
+        autofocus
+        type="phone"
+        placeholder="phone"
+        class="border-[1px] border-[#252525] text-xl px-4 w-[450px] h-12 rounded-3xl text-main placeholder:text-[#252525] mt-6"
+      />
+      <div
+        *ngIf="
+          registerForm.get('phone')?.touched &&
+          registerForm.get('phone')?.errors
+        "
+        class="bg-[#f8d7da] border-[1px] text-lg border-[#f5c6cb] hover:border-[#721c24] text-[#721c24] w-full h-12 rounded-3xl px-4 flex justify-center items-center mt-2 transition-all"
+      >
+        <p *ngIf="registerForm.get('phone')?.errors?.['required']" class="">
+          phone is required
+        </p>
+        <p *ngIf="registerForm.get('phone')?.errors?.['minlength']" class="">
+          min length is 5 characters
+        </p>
+        <p *ngIf="registerForm.get('phone')?.errors?.['maxlength']" class="">
+          max length is 50 characters
+        </p>
+      </div>
+    </div>
+  </form>
 
   <button
     class="border-2 bg-main text-white rounded-3xl px-6 py-2 text-lg capitalize mt-6 w-[450px] min-h-12"
+    [disabled]="registerForm.invalid"
+    (click)="registerSubmit(registerForm)"
   >
-    Register
+    <span *ngIf="!isLoading">Register</span>
+    <div class="loading-icon">
+      <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>
+    </div>
   </button>
 </div>

@@ -1,1 +1,12 @@
-<p>brands works!</p>
+<div class="container p-6 my-4">
+  <h1 class="text-3xl font-bold mb-2">Success Partners</h1>
+  <p class="mb-8">names we honor to work with</p>
+  <div class="grid grid-cols-3 md:grid-cols-5 gap-6">
+    <div *ngFor="let brand of brands">
+      <img
+        class="w-[15rem] border-2 border-[#25252529] rounded"
+        [src]="brand.image"
+      />
+    </div>
+  </div>
+</div>
