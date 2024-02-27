@@ -10,10 +10,23 @@ import { RegisterComponent } from './components/register/register.component';
 import { ForgetpasswordComponent } from './components/forgetpassword/forgetpassword.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { ProductdetailsComponent } from './components/productdetails/productdetails.component';
+import { PaymentsuccessComponent } from './components/paymentsuccess/paymentsuccess.component';
+import { ShippingComponent } from './components/shipping/shipping.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'allorders', redirectTo: 'paymentsuccess', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, title: 'store home page' },
+  {
+    path: 'paymentsuccess',
+    component: PaymentsuccessComponent,
+    title: 'paymentsuccess',
+  },
+  {
+    path: 'shipping/:id',
+    component: ShippingComponent,
+    title: 'shipping orders',
+  },
   { path: 'brands', component: BrandsComponent, title: 'brands' },
   { path: 'categories', component: CategoryComponent, title: 'categories' },
   { path: 'wishlist', component: WishlistComponent, title: 'wishlist' },

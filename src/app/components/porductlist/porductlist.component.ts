@@ -4,6 +4,7 @@ import { Datum } from 'src/app/interfaces/products';
 import { BrandsData } from '../../interfaces/brands';
 import { CartService } from '../../services/cart.service';
 import { WishlistService } from 'src/app/services/wishlist.service';
+import { LoadingService } from '../../services/loading.service';
 @Component({
   selector: 'app-porductlist',
   templateUrl: './porductlist.component.html',
@@ -13,7 +14,8 @@ export class PorductlistComponent {
   constructor(
     private _ProductsService: ProductsService,
     private CartService: CartService,
-    public WishlistService: WishlistService
+    public WishlistService: WishlistService,
+    private LoadingService: LoadingService
   ) {}
   data: Datum[] = [];
   itemsPerPage = 12;
@@ -26,6 +28,7 @@ export class PorductlistComponent {
     if (this._ProductsService.hasData === true) {
       this.data = this._ProductsService.getData();
     } else {
+      this.LoadingService.loading.next(true);
       this._ProductsService.getProducts().subscribe({
         next: (res: any) => {
           console.log(res);
@@ -33,9 +36,11 @@ export class PorductlistComponent {
           this.data = res.data;
           console.log(res.data.length);
           console.log(this._ProductsService.getData());
+          this.LoadingService.loading.next(false);
         },
         error: (err) => {
           console.log(err);
+          this.LoadingService.loading.next(false);
         },
       });
     }

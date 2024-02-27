@@ -1,4 +1,7 @@
 <app-navbar></app-navbar>
+<div *ngIf="loading">
+  <app-loader></app-loader>
+</div>
 <router-outlet> </router-outlet>
 <app-newsletter></app-newsletter>
 <app-footer></app-footer>

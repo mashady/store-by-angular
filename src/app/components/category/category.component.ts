@@ -7,8 +7,6 @@ import { CategoryList } from '../../interfaces/category-list';
   styleUrls: ['./category.component.scss'],
 })
 export class CategoryComponent {
-  itemsPerPage = 3;
-  currentPage = 1;
   CategoryList: CategoryList[] = [
     {
       name: "Men's Fashion",
@@ -41,14 +39,4 @@ export class CategoryComponent {
       categoryLink: 'books',
     },
   ];
-  get PaginatedData() {
-    const start = (this.currentPage - 1) * this.itemsPerPage;
-    const end = start + this.itemsPerPage;
-
-    return this.CategoryList.slice(start, end);
-  }
-  changePage(n: number) {
-    console.log(n);
-    this.currentPage = n;
-  }
 }

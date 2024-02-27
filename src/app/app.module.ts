@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { BrandsComponent } from './components/brands/brands.component';
 import { ProductsComponent } from './components/products/products.component';
@@ -25,9 +24,11 @@ import { NewsletterComponent } from './components/newsletter/newsletter.componen
 import { ForgetpasswordComponent } from './components/forgetpassword/forgetpassword.component';
 import { PorductlistComponent } from './components/porductlist/porductlist.component';
 import { CategoryListComponent } from './components/category-list/category-list.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { PaginationComponent } from './components/pagination/pagination.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { PaymentsuccessComponent } from './components/paymentsuccess/paymentsuccess.component';
+import { HeaderInterceptor } from './header.interceptor';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     PorductlistComponent,
     CategoryListComponent,
     PaginationComponent,
+    PaymentsuccessComponent,
   ],
 
   imports: [
@@ -62,8 +64,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HeaderInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

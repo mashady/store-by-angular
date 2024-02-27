@@ -11,6 +11,8 @@ import { CartService } from '../../services/cart.service';
 export class NavbarComponent {
   sidebarOpened: boolean = false;
   searchbarIsOpen: boolean = false;
+  cartId: string = '';
+  cartTotal: number = 0;
   cartIsOpen: boolean = false;
   authMenuIsOpen: boolean = false;
   isLoggin: boolean = false;
@@ -21,12 +23,7 @@ export class NavbarComponent {
     private CartService: CartService
   ) {}
   ngOnInit() {
-    this.CartService.userCartData.subscribe({
-      next: (res: any) => {
-        console.log(res?.products);
-        this.cartProducts = res?.products;
-      },
-    });
+    this.userCartData();
     this._AuthService.userData.subscribe({
       next: () => {
         if (this._AuthService.userData.getValue() !== null) {
@@ -39,6 +36,17 @@ export class NavbarComponent {
         } else {
           this.isLoggin = false;
         }
+      },
+    });
+  }
+  userCartData() {
+    this.CartService.userCartData.subscribe({
+      next: (res: any) => {
+        console.log(res?.products);
+        this.cartProducts = res?.products;
+
+        this.cartId = res._id;
+        this.cartTotal = res.totalCartPrice;
       },
     });
   }

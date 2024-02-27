@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
+import { LoadingService } from 'src/app/services/loading.service';
 import { WishlistService } from 'src/app/services/wishlist.service';
+
 @Component({
   selector: 'app-wishlist',
   templateUrl: './wishlist.component.html',
@@ -10,19 +12,24 @@ export class WishlistComponent {
   wishes: any = [];
   constructor(
     public WishlistService: WishlistService,
-    public CartService: CartService
+    public CartService: CartService,
+    private LoadingService: LoadingService
   ) {}
   ngOnInit() {
     this.getWishes();
   }
   getWishes() {
+    this.LoadingService.loading.next(true);
+
     this.WishlistService.getUserWishlist().subscribe({
       next: (res) => {
         console.log(res);
         this.wishes = res.data;
+        this.LoadingService.loading.next(false);
       },
       error: (err) => {
         console.log(err);
+        this.LoadingService.loading.next(false);
       },
     });
   }

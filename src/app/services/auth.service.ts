@@ -3,12 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
+import { CartService } from './cart.service';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   userData = new BehaviorSubject(null);
-  constructor(public _HttpClient: HttpClient, private _router: Router) {
+  constructor(
+    public _HttpClient: HttpClient,
+    private _router: Router,
+    public CartService: CartService
+  ) {
     if (localStorage.getItem('userToken')) {
       this.decode();
     }
@@ -34,6 +39,8 @@ export class AuthService {
   logout() {
     localStorage.removeItem('userToken');
     this.userData.next(null);
+    this.CartService.cartLength.next(0);
+    this.CartService.userCartData.next(null);
     this._router.navigate(['/login']);
   }
 }

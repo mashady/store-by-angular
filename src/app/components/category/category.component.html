@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="relative" *ngFor="let category of PaginatedData">
+      <div class="relative" *ngFor="let category of CategoryList">
         <img class="w-full h-80 object-cover" [src]="category.categoryImage" />
         <div
           class="absolute bg-black bg-opacity-75 text-white top-0 left-0 w-full h-full flex justify-center items-center"
@@ -22,12 +22,4 @@
       </div>
     </div>
   </div>
-  <app-pagination
-    [totalItems]="CategoryList.length"
-    [itemsPerPage]="itemsPerPage"
-    [currentPage]="currentPage"
-    (onClick)="changePage($event)"
-  >
-    ></app-pagination
-  >
 </div>

@@ -1,0 +1,37 @@
+<div class="flex flex-col justify-center items-center my-[4rem] min-h-[60vh]">
+  <h1 class="text-4xl font-bold mb-10">Place your order now</h1>
+
+  <form>
+    <div class="flex flex-col">
+      <input
+        formControlName="details"
+        autofocus
+        type="text"
+        placeholder="Details"
+        class="border-[1px] border-[#252525] text-xl px-4 w-[450px] h-12 rounded-3xl text-main placeholder:text-[#252525] mt-6"
+      />
+      <input
+        formControlName="phone"
+        autofocus
+        type="text"
+        placeholder="Phone"
+        class="border-[1px] border-[#252525] text-xl px-4 w-[450px] h-12 rounded-3xl text-main placeholder:text-[#252525] mt-6"
+      />
+      <input
+        formControlName="city"
+        autofocus
+        type="text"
+        placeholder="City"
+        class="border-[1px] border-[#252525] text-xl px-4 w-[450px] h-12 rounded-3xl text-main placeholder:text-[#252525] mt-6"
+      />
+    </div>
+  </form>
+
+  <button
+    class="border-2 bg-main text-white rounded-3xl px-6 py-2 text-lg capitalize mt-6 w-[450px] min-h-12"
+    [disabled]="shippingAddress.invalid"
+    (click)="submitShippingAdress(shippingAddress)"
+  >
+    Login
+  </button>
+</div>

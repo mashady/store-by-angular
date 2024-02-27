@@ -207,12 +207,16 @@
     <div class="pb-6">
       <div class="flex justify-between items-center p-2 mb-2 border-t-[1px]">
         <span class="text-xl font-bold">Total price :</span>
-        <span class="font-bold underline">LE 340.00 EGP</span>
+        <span class="font-bold underline">LE {{ cartTotal }} EGP</span>
       </div>
       <button
         class="bg-main text-white w-full border-2 rounded-3xl px-4 py-2 text-lg capitalize"
       >
-        <a routerLink="/products">Check out</a>
+        <a
+          [routerLink]="['/shipping', cartId]"
+          (click)="this.cartIsOpen = false"
+          >Check out</a
+        >
       </button>
     </div>
   </div>

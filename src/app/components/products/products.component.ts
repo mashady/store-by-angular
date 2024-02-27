@@ -16,21 +16,33 @@ export class ProductsComponent {
     public WishlistService: WishlistService
   ) {}
   data: Datum[] = [];
-  itemsPerPage = 12;
+  itemsPerPage = 8;
   currentPage = 1;
   curPage: number = 1; // new way
-  pageSize: number = 12; // new way
+  pageSize: number = 8; // new way
+  totalPages = 0;
+  pages: number[] = [1];
+  totalItems: number = 0;
   ngOnInit() {
     console.log(document.getElementsByTagName('img'));
 
     if (this._ProductsService.hasData === true) {
       this.data = this._ProductsService.getData();
+      this.totalItems = this.data.length;
+
+      this.totalPages = Math.ceil(this.totalItems / this.pageSize);
+      // array of pages as a numbers
+      this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
     } else {
       this._ProductsService.getProducts().subscribe({
         next: (res: any) => {
           console.log(res);
           this._ProductsService.setData(res.data);
           this.data = res.data;
+          this.totalItems = res.data.length;
+          this.totalPages = Math.ceil(this.totalItems / this.pageSize);
+          // array of pages as a numbers
+          this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
           console.log(res.data.length);
           console.log(this._ProductsService.getData());
         },
