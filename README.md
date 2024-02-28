@@ -8,12 +8,12 @@ https://store-byabu.netlify.app/
 
 ## Screenshots
 
-![App Screenshot](promo/Capture1.png)
+![App Screenshot](promo/Capture1.PNG)
 
 <p float="left">
-  <img src="promo/Capture2.png" height="150" width="250" />
+  <img src="promo/Capture2.PNG" height="200" width="50%" />
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="promo/Capture3.png" height="150" width="250" />
+  <img src="promo/Capture3.PNG" height="200" width="50%" />
   
 </p>
 
