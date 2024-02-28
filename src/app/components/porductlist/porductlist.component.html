@@ -1,51 +1,48 @@
 <div class="p-6">
-  <div class="flex justify-between">
-    <div>
-      <h2 class="text-2xl font-bold mb-2">Explore a bunch of items</h2>
-      <p>A bunch of items brought to you now.</p>
+  <div class="container">
+    <div class="flex justify-between">
+      <div>
+        <h2 class="text-2xl font-bold mb-2">Explore a bunch of items</h2>
+        <p>A bunch of items brought to you now.</p>
+      </div>
+      <span class="text-main font-bold capitalize underline">
+        <a routerLink="/products">see more</a>
+      </span>
     </div>
-    <span class="text-main font-bold capitalize underline">
-      <a routerLink="/products">see more</a>
-    </span>
-  </div>
+    <div class="mt-8 p-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-12">
+        <div class="relative" *ngFor="let product of data.slice(0, 8)">
+          <div class="flex flex-col items-center">
+            <div class="" [routerLink]="['/product', product._id]">
+              <img
+                [src]="product.images[0]"
+                class="w-full rounded cursor-pointer"
+              />
+            </div>
 
-  <div class="mt-8">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-      <div class="relative" *ngFor="let product of data.slice(0, 8)">
-        <div class="flex flex-col items-center">
-          <div class="">
-            <img
-              [src]="product.images[0]"
-              class="w-full rounded cursor-pointer"
-            />
-            <div
-              class="bg-black opacity-0 absolute top-0 left-0 w-full h-full p-2 text-right cursor-pointer hover:opacity-60 transition-all rounded"
-            >
-              <div>
+            <div class="z-10 bg-white w-full my-4">
+              <h2 class="font-bold hover:underline cursor-pointer truncate">
+                {{ product.title }}
+              </h2>
+              <p class="text-[0.9rem]">LE {{ product.price }} EGP</p>
+            </div>
+            <div class="w-full">
+              <div class="flex justify-center items-center">
                 <button
-                  class="text-white bg-main w-28 h-12 rounded mr-2"
+                  class="text-white bg-main w-full h-12 rounded mr-2"
                   (click)="addProductToCart(product._id)"
                 >
                   Add to cart
                 </button>
                 <i
-                  class="fa fa-heart text-white cursor-pointer text-[1.2rem] hover:text-[red]"
-                  [class.text-[red]]="
+                  class="fa fa-heart text-main cursor-pointer text-[1.2rem] hover:text-heart transition-all"
+                  [class.text-heart]="
                     this.WishlistService.wishArray.includes(product._id)
                   "
                   (click)="addProductToWish(product._id)"
                 ></i>
               </div>
             </div>
-          </div>
-          <div class="z-10 bg-white w-full">
-            <h2
-              class="font-bold hover:underline cursor-pointer truncate"
-              [routerLink]="['/product', product._id]"
-            >
-              {{ product.title }}
-            </h2>
-            <p class="text-[0.9rem]">LE {{ product.price }} EGP</p>
           </div>
         </div>
       </div>

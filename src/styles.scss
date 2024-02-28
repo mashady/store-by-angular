@@ -15,6 +15,9 @@ $colors: (
   main: #252525,
   secondary: #e58e27,
 );
+.text-heart {
+  color: #dc3545 !important;
+}
 
 @each $key, $value in $colors {
   .text-#{$key} {

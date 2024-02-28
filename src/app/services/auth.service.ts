@@ -36,6 +36,13 @@ export class AuthService {
       data
     );
   }
+
+  forget(data: any): Observable<any> {
+    return this._HttpClient.post(
+      `https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords`,
+      data
+    );
+  }
   logout() {
     localStorage.removeItem('userToken');
     this.userData.next(null);
