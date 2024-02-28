@@ -71,7 +71,6 @@ export class ProductsComponent {
       next: (res: any) => {
         console.log(res);
         this.CartService.cartLength.next(res.numOfCartItems);
-        //this.CartService.userCartData.next(res.data);
         this.CartService.cartInit();
         console.log(this.CartService.userCartData.getValue());
         console.log(res.numOfCartItems);

@@ -24,19 +24,3 @@ export class HeaderComponent {
   };
   constructor() {}
 }
-
-/**
-
-
-
-<ng-template carouselSlide>
-      <img src="assets/slider/payment.jpg" height="300px" width="100%" />
-    </ng-template>
-    <ng-template carouselSlide>
-      <img src="assets/slider/shoes.jpg" height="300px" width="100%" />
-    </ng-template>
-    <ng-template carouselSlide>
-      <img src="assets/slider/sales22.jpg" height="300px" width="100%" />
-    </ng-template>
-
-*/
