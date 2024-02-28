@@ -10,10 +10,10 @@ https://store-byabu.netlify.app/
 
 ![App Screenshot](promo/Capture1.PNG)
 
-<p float="left">
-  <img src="promo/Capture2.PNG" height="200" width="50%" />
+<p style="text-align: center;">
+  <img src="promo/Capture2.PNG" height="200" width="300px" />
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="promo/Capture3.PNG" height="200" width="50%" />
+  <img src="promo/Capture3.PNG" height="200" width="300px" />
   
 </p>
 
