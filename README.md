@@ -14,13 +14,6 @@ https://store-byabu.netlify.app/
 
 **client side:** angular, TailwindCSS
 
-## Features
-
-- Light/dark mode toggle
-- Live previews
-- Fullscreen mode
-- Cross platform
-
 ## Authors
 
 - created to you with all 💜 [@mashady](https://www.github.com/mashady)
