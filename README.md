@@ -8,7 +8,7 @@ https://store-byabu.netlify.app/
 
 ## Screenshot
 
-![App Screenshot](promo/Capture1.PNG)
+![App Screenshot](promo/store-with-angular-appHeader.png)
 
 ## Tech Stack
 
